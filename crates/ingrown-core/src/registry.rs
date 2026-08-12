@@ -1,7 +1,4 @@
-use anyhow::Result;
-use ingrown_api::capability::{Capability, CapabilityResult, CapabilitySpec};
-use ingrown_api::ExecutionContext;
-use serde_json::Value;
+use ingrown_api::capability::{Capability, CapabilitySpec};
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 

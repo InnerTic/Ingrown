@@ -1,0 +1,15 @@
+[package]
+name = "ingrown-core"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+ingrown-api = { path = "../ingrown-api" }
+anyhow = "1.0"
+serde_json = "1.0"
+async-trait = "0.1"
+tokio = { version = "1.0", features = ["rt-multi-thread", "macros"] }
+
+[lib]
+name = "ingrown_core"
+path = "src/lib.rs"

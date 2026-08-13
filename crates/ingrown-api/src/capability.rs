@@ -6,6 +6,8 @@
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
+use crate::context::ExecutionContext;
+
 /// Metadata about a capability.
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct CapabilityMetadata {
@@ -80,5 +82,9 @@ pub trait Capability: Send + Sync {
 
     /// Execute this capability with the given input.
     /// The input is a JSON object matching the input_schema.
-    async fn execute(&self, input: Value) -> anyhow::Result<CapabilityResult>;
+    ///
+    /// `context` carries execution identity (id, parent chain) and is a future
+    /// home for tracing, cancellation, and metadata. Capabilities receive it by
+    /// reference and must not mutate orchestration state through it.
+    async fn execute(&self, input: Value, context: &ExecutionContext) -> anyhow::Result<CapabilityResult>;
 }
